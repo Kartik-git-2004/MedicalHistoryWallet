@@ -1,2 +1,0 @@
-spam-sender.com
-known-spammer.net
