@@ -16,4 +16,56 @@ public class Patient {
         this.bloodGroup = bloodGroup;
         this.Medicalhistory = new ArrayList<>();
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
+
+    public String getAllergies() {
+        return allergies;
+    }
+
+    public void setMedicalhistory(Medicalhistory record) {
+        Medicalhistory.add(record);
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
+
+    public void setAllergies(String allergies) {
+        this.allergies = allergies;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", bloodGroup='" + bloodGroup + '\'' +
+                ", allergies='" + allergies + '\'' +
+                ", Medicalhistory=" + Medicalhistory +
+                '}';
+    }
 }
