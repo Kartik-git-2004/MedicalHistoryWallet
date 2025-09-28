@@ -1,211 +1,126 @@
-# Malicious Email Detection System
+🩺 Medical History Wallet
 
-A Java-based system that analyzes email content to identify potential threats such as phishing, spam, or malicious links. The system is designed for intermediate-level Java developers and includes features like text analysis, link scanning, and basic machine learning integration for improved accuracy.
+A Java-based console application for securely managing and storing patient medical records. The system is designed for intermediate-level Java developers and demonstrates key concepts such as Object-Oriented Programming (OOP), Collections, File I/O, and Exception Handling.
 
-## Features
+It can later be extended with databases (MySQL), GUI (Swing/JavaFX), and AI/ML integration for predictive healthcare analytics.
 
-### Email Input
-- Input email content (subject, body, and sender information) via a simple console interface or a text file
-- Support for parsing email headers and body text for analysis
+✨ Features
+Patient Management
 
-### Text Analysis
-- Keyword-based detection system to identify common phishing or spam phrases
-- Regular expressions to detect suspicious patterns (e.g., fake URLs, excessive special characters)
-- Detection of social engineering tactics and urgency indicators
+Add patient details: ID, Name, Age, Blood Group, Allergies
 
-### Link Scanning
-- Extraction of all URLs from the email body
-- Checking against a list of known malicious domains
-- Analysis of URL structure for anomalies (e.g., misspelled domains, unusual subdomains, IP address URLs)
-- Detection of URL shortening services
+Search patients by ID
 
-### Sender Verification
-- Validation of the sender's email address against known spam or phishing sources
-- Detection of inconsistencies in the sender's domain
-- Analysis of email headers for spoofing attempts
+View all patient records
 
-### Machine Learning Integration
-- Basic machine learning model for classifying emails as malicious or safe
-- Feature extraction from email content
-- Confidence-based scoring for threat assessment
+Update and delete records
 
-### Detailed Reporting
-- Comprehensive threat reports with confidence levels
-- Specific recommendations based on detected threats
-- Clear presentation of analysis results
+Medical History Tracking
 
-## System Architecture
+Add medical history entries for patients (date, condition, medicines, notes)
+
+View patient’s complete medical history
+
+Data Persistence
+
+Save all records to file (patients.dat) using serialization
+
+Load data automatically when the app starts
+
+Console Menu
+
+Simple, user-friendly, menu-driven interface
+
+Input validation and exception handling
+
+
+🏗 System Architecture
 
 The system is organized into several components:
 
-1. **Email Parser**: Handles the parsing of emails from different input sources
-2. **Analysis Components**:
-   - TextAnalyzer: Analyzes the text content of emails
-   - LinkAnalyzer: Analyzes URLs found in emails
-   - SenderAnalyzer: Analyzes sender information
-   - MachineLearningAnalyzer: Provides ML-based classification
-3. **Configuration Manager**: Loads and manages configurations for the analyzers
-4. **User Interface**: Simple console-based interface for interaction
+Patient Class : Holds patient information and medical history list
 
-## Getting Started
+MedicalHistory Class :Stores individual medical history entries
 
-### Prerequisites
-- Java Development Kit (JDK) 11 or higher
-- Maven for dependency management
+WalletManager Class : Handles all patient operations (add, search, delete, view, save/load)
 
-### Installation
+MainApp Class:  Provides the console menu and controls program flow
 
-1. Clone the repository:
-```
-git clone https://github.com/yourusername/malicious-email-detector.git
-cd malicious-email-detector
-```
+🚀 Getting Started
+Prerequisites
 
-2. Build the project with Maven:
-```
-mvn clean package
-```
+Java JDK 11 or higher
 
-3. Run the application:
-```
-java -jar target/malicious-email-detector-1.0-SNAPSHOT-jar-with-dependencies.jar
-```
+Any IDE (IntelliJ, Eclipse, VS Code) or terminal with javac
 
-## Usage
+Installation
 
-### Console Interface
+Clone the repository:
 
-The application provides a simple console interface with the following options:
+git clone https://github.com/yourusername/medical-history-wallet.git
+cd medical-history-wallet
 
-1. **Analyze email by manual input**: Enter sender, subject, and body manually
-2. **Analyze email from file**: Provide a path to an email file
-3. **Help**: Show information about the system
-4. **Exit**: Exit the application
 
-### Example Email Analysis
+Compile the Java files:
 
-Example input:
-```
-Sender: support@fakebank.com
-Subject: Urgent: Verify Your Account
-Body: Dear customer,
+javac *.java
 
-We have detected suspicious activity on your account. Please click here to verify your account: http://fakebank.com/login
 
-If you don't verify within 24 hours, your account will be suspended.
+Run the application:
 
-Thank you,
-Security Team
-```
+java MainApp
 
-Example output:
-```
-========== EMAIL THREAT ANALYSIS REPORT ==========
+🖥 Usage
 
-Email details:
-- Sender: support@fakebank.com
-- Subject: Urgent: Verify Your Account
+When you run the application, you’ll see a console menu like this:
 
-Overall assessment:
-- Malicious: YES
-- Threat score: 85.5%
+==== Medical History Wallet ====
+1. Add Patient
+2. View Patients
+3. Search Patient
+4. Delete Patient
+5. Save & Exit
 
-Detected threats:
-- PHISHING (confidence: 90.0%)
-- SUSPICIOUS_LINK (confidence: 75.0%)
-- SOCIAL_ENGINEERING (confidence: 84.0%)
 
-Suspicious links:
-- http://fakebank.com/login
+Example run:
 
-Suspicious keywords/phrases:
-- Phishing: verify your account
-- Phishing: suspicious activity
-- Social engineering in subject: urgent
-- Urgency in body: within 24 hours
-- Fear-based message in body: account will be suspended
+Enter ID: 101
+Enter Name: Rahul Sharma
+Enter Age: 32
+Enter Blood Group: B+
+Enter Allergies: Penicillin
 
-Recommendations:
-- Do not reply to this email
-- Do not click on any links or buttons in this email
-- Do not provide any personal information
-- Verify the sender by contacting them through a known, trusted channel
-- Be cautious of emails creating urgency or strong emotions
+✅ Patient added successfully!
 
-================================================
-```
 
-## Configuration
+Data is automatically saved into patients.dat and loaded at the next run.
 
-The system uses several configuration files located in the `config/` directory:
+⚙️ Configuration
 
-- `config.json`: Main configuration file with settings and thresholds
-- `phishing_keywords.txt`: List of keywords associated with phishing attempts
-- `spam_keywords.txt`: List of keywords associated with spam
-- `malicious_domains.txt`: List of known malicious domains
-- `trusted_domains.txt`: List of trusted sender domains
-- `spam_domains.txt`: List of known spam sender domains
+File Storage: Records are stored in patients.dat (created automatically).
 
-These files are automatically created with default values if they don't exist.
+Serialization: Patients and MedicalHistory objects implement Serializable.
 
-## Customization
+🔮 Future Scope
 
-### Adding Custom Keywords
+Database Integration (MySQL): Replace file storage with a database using JDBC.
 
-You can add custom keywords to the respective text files:
+GUI: Add JavaFX/Swing interface for better usability.
 
-```
-# phishing_keywords.txt
-verify your account
-security alert
-update your password
-confirm your identity
-```
+Encryption: Secure medical records using Java Crypto API.
 
-### Adding Known Malicious Domains
+AI/ML Integration: Export data to CSV/JSON for predictive analytics (e.g., health risk predictions).
 
-Add known malicious domains to the malicious_domains.txt file:
+Web App: Upgrade to Spring Boot + REST APIs for a scalable solution.
 
-```
-# malicious_domains.txt
-malicious-domain.com
-phishing-site.net
-fake-bank.com
-```
+📚 Concepts Covered
 
-### Adjusting Thresholds
+Object-Oriented Programming (OOP)
 
-Modify the thresholds in the config.json file:
+Java Collections (ArrayList, HashMap)
 
-```json
-{
-  "thresholds": {
-    "phishing_threshold": 60,
-    "spam_threshold": 70,
-    "link_threshold": 50
-  }
-}
-```
+File I/O (Serialization/Deserialization)
 
-## Extending the System
+Exception Handling
 
-### Adding New Analysis Components
-
-1. Create a new analyzer class in the `com.emailsecurity.analysis` package
-2. Implement the analysis logic
-3. Integrate it with the EmailAnalyzer class
-
-### Improving Machine Learning
-
-1. Replace the simulated ML model with a real ML implementation
-2. Train the model with labeled email data
-3. Update the feature extraction based on your ML model's requirements
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Thanks to the open-source community for providing the libraries used in this project
-- Inspired by various email security systems and best practices in email threat detection 
+Menu-driven Console Programs
